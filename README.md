@@ -13,7 +13,7 @@ you should see a form 'UC Check In'. Select that form and fill it out as you hav
 This form has been taylored a bit for UCARES WinLink use.
 
 Three Files:
-UC Check In.txt
-UC_Check_In_Initial.html
-UC_Check_In_Viewer.html
++ UC Check In.txt
++ UC_Check_In_Initial.html
++ UC_Check_In_Viewer.html
 
