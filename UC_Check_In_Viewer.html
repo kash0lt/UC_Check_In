@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" /><title>Check In-{var MsgSender}-{var Location}</title>
+
+<style type="text/css">
+@media print {
+
+#printPageButton {
+    display: none;
+  }
+
+  .form-control, .form-control.nobug {
+
+border: 0;
+outline: 0;
+box-shadow: none;
+font-size:12px;
+}
+
+.form-control.nobug {
+transition: none; /*-- THIS IS IMPORTANT -- */
+}
+ input {
+         outline: none !important;
+		box-shadow: none;
+		border: none;
+		}
+}
+body, td, th {
+
+font-family: Arial,Helvetica,sans-serif;
+font-size: 12px;
+font-weight: inherit;
+}
+
+.zentriert {
+font-size: 12px;
+font-family: Arial,Helvetica,sans-serif;
+font-weight: inherit;
+}
+input, select {
+padding: 1px;
+-moz-border-radius-topleft: 2px;
+-moz-border-radius-topright: 2px;
+-moz-border-radius-bottomright: 2px;
+-moz-border-radius-bottomleft: 2px;
+font-family: Arial,Helvetica,sans-serif;
+font-size: 12px;
+font-weight: inherit;
+}
+
+textarea {
+padding: 1px;
+-moz-border-radius-topleft: 2px;
+-moz-border-radius-topright: 2px;
+-moz-border-radius-bottomright: 2px;
+-moz-border-radius-bottomleft: 2px;
+font-family: Arial,Helvetica,sans-serif;
+font-size: 12px;
+font-weight: inherit;
+}
+
+.rechtsbuendig {
+font-size: 12px;
+font-family: Arial,Helvetica,sans-serif;
+font-weight: inherit;
+}
+
+.SubmitBtn {
+font-size: 12px;
+font-family: Arial,Helvetica,sans-serif;
+font-weight: inherit;
+}
+
+.version {
+color: #666666;
+position: relative;
+left: 0px;
+top: 3px;
+font-size: 12px;
+font-family: Arial,Helvetica,sans-serif;
+font-weight: inherit;
+}
+
+.style2 {font-size: 16px}
+.style4 {font-size: 12px}
+.style7 {color: #FF0000;
+	font-size: 10px;
+}
+
+.style7 {font-size: 10px}
+.style8 {color: #2A5F00}
+.style12 {font-size: 14px}
+.style14 {font-size: 12px; color: #333333; }
+.style24 {	color: #FF0000;
+
+font-style: italic;
+
+}
+.style23 {color: #FF0000}
+.style25 {color: #FF0000;
+	font-size: 10px;
+}
+.style25 {font-size: 10px}
+.style25 {color: #333333;
+	font-size: 10px;
+}
+
+.style25 {font-size: 10px}
+
+</style>
+
+<script type="text/javascript">
+
+function DoCheck() {
+var checkit = document.getElementById('addformat').value;
+if (checkit) { document.getElementById("Format").checked = true;
+} else {document.getElementById("Format").checked = false; }
+}
+
+function Flip() {  
+var withspace = document.getElementById('WithSpaces').value;
+var nospace = document.getElementById('NoSpaces').value;
+
+//document.getElementById('MGRS').value =mrgs;
+   var Checked = document.getElementById("Format").checked;
+   
+    document.getElementById('addformat').value =Checked;
+   if (Checked) { document.getElementById('MGRS').value =withspace;}  else{document.getElementById('MGRS').value =nospace;}
+   
+}  
+
+
+</script>
+</head>
+
+<body onload="DoCheck()">
+<span style="font-family:  Arial, Helvetica, sans-serif;"> </span>
+<form pbzloc="1" method="post" id="Check In" enctype="multipart/form-data" action="http://{FormServer}:{FormPort}" onsubmit="return confirm('To complete your form submission, click OK and close open blank browser window. You will return to the New Message window to post your mail to the outbox. You can also make address changes at this time.');">
+<table style="width: 960px; " align="center" border="0">
+<tbody>
+<tr>
+<td><span style="font-family:  Arial, Helvetica, sans-serif;">&nbsp;</span>
+<table width="893" border="1" cellpadding="4" cellspacing="0" bordercolor="#999999" style="font-size: 14px; width: 874px; ">
+<tbody>
+<tr>
+<td height="34"  colspan="2" valign="top" bgcolor="#dee9f9" style="vertical-align: top; text-align: center; ">
+  <div align="center"><strong><span class="style2"><em><strong><small><big><span class="style7"><strong><small><big>&nbsp;&nbsp;</big></small></strong></span></big></small></strong>UCARES WinLink Express Check In</em></span></strong><span class="style2"><strong><br />
+      {var Title}</strong><br />
+              <small><big>&nbsp;&nbsp;</big></small> </span></div></td>
+</tr>
+
+<tr>
+<td height="94" colspan="2" style="vertical-align: middle; text-align: center; width: 50%;"><div align="left"><span style="font-family:  Arial, Helvetica, sans-serif;"><small><span style="font-size: 12px;"><big><big><small><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif; color: black;"><big>&nbsp;</big></span></span>Date/Time</small></big></big></span></small></span>&nbsp;
+      <input readonly="readonly" maxlength="19" size="20" name="DateTime" value="{var DateTime}" />
+&nbsp;&nbsp;<span style="font-family:  Arial, Helvetica, sans-serif;"><small><big><big><big><big><small style="color: black;"><small> <span style="color: black;">Status</span></small></small>&nbsp;</big></big></big></big></small></span><span style="font-family:  Arial, Helvetica, sans-serif;"><small>
+  <input maxlength="11" size="12" readonly="readonly" name="Status" value="{var Status}" />
+  </small></span><span style="font-family:  Arial, Helvetica, sans-serif;"></span><span style="font-family:  Arial, Helvetica, sans-serif;"><small><big></big></small></span>&nbsp; &nbsp;Band&nbsp;<span style="font-family:  Arial, Helvetica, sans-serif;"><small>
+  <input name="Band" id="Band" value="{var Band}" size="12" maxlength="11" readonly="readonly" />
+  &nbsp;&nbsp; &nbsp;</small></span>Session<span style="font-family:  Arial, Helvetica, sans-serif;"><small>&nbsp;</small></span><span style="font-family:  Arial, Helvetica, sans-serif;"><small>&nbsp;&nbsp;
+  <input name="Session" id="Session" value="{var Session}" size="12" maxlength="11" readonly="readonly" />
+  </small></span><span class="style4"><br /><br /> &nbsp;Gateway<span style="font-family:  Arial, Helvetica, sans-serif;"><small>&nbsp;</small></span><span style="font-family:  Arial, Helvetica, sans-serif;"><small>&nbsp;&nbsp;
+  <input name="Gateway" id="Gateway" value="{var Gateway}" size="12" maxlength="11" readonly="readonly" /> <br />
+  &nbsp;&nbsp;</span><small><span style="font-size: 12px;">
+  </span></small><span style="font-family:  Arial, Helvetica, sans-serif;"><small>&nbsp; <br />
+  </small></span><span style="color: rgb(153, 0, 0);"></span><span style="font-family:  Arial, Helvetica, sans-serif;"></span>
+  <big><small style="color: black;"><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif; color: black;"></span></span></small></big>
+  <span style="font-family:  Arial, Helvetica, sans-serif;"><small><big><big> &nbsp;Initial Assigned Operators&nbsp; </big></big></small></span>
+  <input readonly="readonly" value="{var Assigned}" title="Call signs only." maxlength="60" size="65" name="Assigned" />
+&nbsp;  <small><span style="font-size: 12px;"><big><small style="color: black;">Sender&nbsp;&nbsp;</small> </big>
+  <input style="color: rgb(204, 0, 0);" title="Call sign or tactical used to send mail" readonly="readonly" maxlength="16" size="17" name="MsgSender" value="{var MsgSender}" />
+  </span></small>  <br /><br />
+  <span style="font-family:  Arial, Helvetica, sans-serif;"><small><big><big>Operator Name</big></big></small></span>
+  <input readonly="readonly" value="{var MsgOpName}" title="Names only." maxlength="60" size="65" name="MsgOpName" />
+&nbsp; 
+  <span style="font-family:  Arial, Helvetica, sans-serif;"></span></div></td>
+</tr>
+<tr>
+<td height="61" colspan="4" bgcolor="#f8f8ff" style="text-align: center; vertical-align: middle;" pbzloc="6"><div align="left">
+  <p><br />
+    <span class="style4">&nbsp;<span class="style12">Location<small><big><big>&nbsp;</big></big></small><small></small></span></span><small>
+    <big>
+  <input readonly="readonly" value="{var Location}" size="77" required="required" name="Location" maxlength="75" id="Subjectline" />
+&nbsp;
+&nbsp;&nbsp;
+<input name="WithSpaces" type="hidden" id="WithSpaces" value="{var WithSpaces }" />
+<input name="NoSpaces" type="hidden" id="NoSpaces" value="{var NoSpaces}" />
+<input name="addformat" type="hidden" id="addformat" value="{var addformat}" />
+</big></small></p>
+
+  <p><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><big>&nbsp;</big></span></span>GPS Coordinates if provided&nbsp;    
+    <input name="GPS" type="text" id="GPS" value="{var GPS2}" size="30" maxlength="30" placeholder="EXAMPLE: 40.3568, -111.7213" />
+    <em>&nbsp; <em></em>&nbsp; <em></em><em></em> MGRS </em>Coordinates<span class="style23"></span>
+    <input name="MGRS" type="text" id="MGRS" value="{var MGRS}" size="30" maxlength="30" placeholder="Optional- MGRS coordinates"/>
+    <span class="style24">&nbsp;
+    <input name="Format" type="checkbox" id="Format" value="soaceit" onclick="Flip();"/>
+&nbsp;</span><em>Format with spaces</em><span class="style24"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp;<big><small><span style="font-weight: bold;"></span></small>&nbsp; &nbsp;</big> &nbsp;
+&nbsp; <p>What 3 words: &nbsp;<input name="w3w" type="text" value="{var w3w}" readonly="readonly"></p>
+<span style="font-weight: bold;"></span></p><p><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><big>&nbsp;</big></span></span>Emergency power yes/no: &nbsp;
+    <input name="EPower" type="text" value="{var EPower}" readonly="readonly"></p>
+</div></td>
+</tr>
+<tr>
+  
+</tr>
+<tr>
+<td height="89" colspan="5" style="vertical-align: top; text-align: center; height: 40px;"><div align="left">
+  <p> <span style="font-family:  Arial, Helvetica, sans-serif; color: black;"><big>Comments</big></span></p>
+  <p><span style="width:750px; margin: 10px;  word-wrap:break-word; display:inline-block;">
+      {var Comments}<br />
+      <br />
+  </span></p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<p>{var Templateversion}<span style="font-family:  Arial, Helvetica, sans-serif;"><span class="style2"><br />
+  <small><span class="style8">Spreadsheet copy and paste is located at the bottom of the text message body</span><span class="style8"></span></small></span><small><span class="style8">. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style2"><strong><small><big></big></small></strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></small></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+</form>
+
+</body></html>

@@ -1,0 +1,46 @@
+Form:UC_Check_In_Initial.html,UC_Check_In_Viewer.html
+
+To:<var MsgTo>
+
+Subject: Express Check In [<var Status>]-<var MsgSender>-<var Location>
+
+SeqInc: 1
+
+Msg:
+-
+<var Title>
+Status: [<var Status>]
+Date/Time: <var DateTime>
+Count: <SeqNum>
+Initial Assigned Operators: <var Assigned>
+Location: <var Location>
+GPS Coordinates: <var GPS2>   MGRS Coordinates: <var MGRS>
+Band Used: <var Band>
+Session Type: <var Session>
+Gateway: <var Gateway>
+What 3 Words: <var w3w>
+Call/Tactical Sender: <var MsgSender>
+Operator: <var MsgOpName>
+Emergency Power: <var EPower>
+
+-------------------------------------------------------------
+Comments:
+
+<var Comments>  
+
+-------------------------------------------------------------
+Below Info Used for Copy to Spreadsheet
+
+Semicolon Delimited:
+<var DateTime>;<var MsgSender>;"<var MsgOpName>";<var Assigned>;<var Location>;<var GPS2>;<var MGRS>;<var Band>;<var Session>;<var Gateway>;<var EPower>;<var w3w>
+
+TAB Delimited:
+<var DateTime>	<var MsgSender>	<var MsgOpName>	<var Assigned>	<var Location>	<var GPS2>	<var MGRS>	<var Band>	<var Session>	<var Gateway>	<var EPower>	<var w3w>
+
+
+
+
+----------
+Version 0.4
+
+
