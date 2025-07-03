@@ -185,7 +185,7 @@ font-weight: inherit;
 .style15 {color: #2A5F00; font-size: 12px; }
 .style17 {font-size: small}
 .style18 {font-size: x-small}
-.style20 {font-size: 18px}
+.style20 {font-size: 20px}
 .style22 {font-family: Arial, Helvetica, sans-serif; color: #000000; }
 .style23 {color: #FF0000}
 
@@ -783,21 +783,21 @@ return true;
 <table  border="3" cellpadding="4" cellspacing="0" bordercolor="#999999" style="font-size: 14px; width: 829px; ">
 <tbody>
 <tr>
-<td height="71" colspan="2" valign="top" bgcolor="#dee9f9" style="vertical-align: bottom; height: 5%; text-align: center; background-color: "><p style="font-family:  Arial, Helvetica, sans-serif;;"><small>&nbsp;
+<td height="71" colspan="2" valign="top" bgcolor="#dee9f9" style="vertical-align: bottom; height: 5%; text-align: center; background-color: "><p style="font-family:  Arial, Helvetica, sans-serif;;">&nbsp;
   <span class="style4">UCARES WinLink Check In </span><br />
 <span class="style20"  id="SubjectText">  </span><br />
   <input type="file" id="txtfiletoread" accept=".txt"  style="display: none;"/>
  </span></p>
   <table width="100%"  border="0" cellpadding="0" cellspacing="0" bordercolor="#dee9f9">
     <tr>
-      <td width="37%"><small><big><b><big>
+      <td width="37%"><b>
 	  </td>
-      <td width="31%"><div align="center"><small class="formtext1"><span class="style6"><small><big><small><big><span style="font-weight: normal;"><small><span class="style9"><a href="#pop1"><big style="color: rgb(255, 0, 0);"><span class="style20"  id="SubjectText">
-          </span></big></a></span></small></span></big></small></big></small></span></small><small class="formtext1"><span class="style6"><small><big><small><big><span style="font-weight: normal;"><small class="formtext1"><small><big><small><big><span style="font-weight: normal;"><small><span class="style45"><a href="#pop1"><big style="color: rgb(255, 0, 0);"><span class="style20"  id="SubjectText">
+      <td width="31%"><div align="center"><span class="style6"><span style="font-weight: normal;"><span class="style9"><span class="style20"  id="SubjectText">
+          </span></span></span></span><span class="style6"><span style="font-weight: normal;"><span style="font-weight: normal;"><span class="style45"><span class="style20" id="SubjectText">
           <input name="loadbtn" type="button" id="loadbtn" onclick="document.getElementById('txtfiletoread').click();" value=" Load Check in Data" />
-        </span></big></a></span></small></span></big></small></big></small></small></span></big></small></big></small></span></small><small> </small></div></td>
-    <td width="32%"><div align="center"><small class="formtext1"><span class="style6"><small><big><small><big><span style="font-weight: normal;"><small class="formtext1"><small><big><small><big><span style="font-weight: normal;"><small><span class="style45"><a href="#pop1"><big style="color: rgb(255, 0, 0);"><span class="style20"  id="SubjectText">
-    </span></big></a></span></small></span></big></small></big></small></small><small><span class="style45"><a href="#pop1"><big style="color: rgb(255, 0, 0);"><span class="style20"  id="SubjectText">    </span></big></a></span> </span></small></span></big></small></big></small></span></small>&nbsp; </div></td>
+        </span></span></span></span></span> </div></td>
+    <td width="32%"><div align="center"><span class="style6"><span style="font-weight: normal;"><span style="font-weight: normal;"><span class="style45"><span class="style20" id="SubjectText">
+    </span></span></span><span class="style45"><span class="style20"  id="SubjectText">    </span></span> </span></span>&nbsp; </div></td>
     </tr>
   </table>
  
@@ -809,15 +809,15 @@ return true;
 <tr>
 <td style="vertical-align: middle; text-align: center; width: 50%;" colspan="2">
 <div align="left">
-  <p><span style="font-family:  Arial, Helvetica, sans-serif;;"><small><span style="font-size: 12px;"><big><big><small><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><big>&nbsp;</big></span></span></small></big></big></span></small></span><span style="font-family:  Arial, Helvetica, sans-serif;;"><small><span style="font-size: 12px;"><big><big><small><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><big>&nbsp;</big></span></span><span class="style17">Date/Time</span></small></big></big></span></small></span> &nbsp; 
+  <p><span style="font-family:  Arial, Helvetica, sans-serif;;"><span style="font-size: 12px;"><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;">&nbsp;</span></span></span></span><span style="font-family:  Arial, Helvetica, sans-serif;;"><span style="font-size: 12px;"><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;">&nbsp;</span></span><span class="style17">Date/Time</span></span></span> &nbsp; 
         <input  title="Can be overwritten if needed."  placeholder="Click to Add Date/Time" name="DateTime" required="required" maxlength="19" id="ActivityDateTime1" size="21" onclick="TimeNow('ActivityDateTime1', 'Activities1')" /> 
-&nbsp; <span class="style23" style="font-family:  Arial, Helvetica, sans-serif;;"><small><span style="font-size: 12px;"><big><big><small>Status</small></big></big></span></small></span>&nbsp; &nbsp;<big><small>
+&nbsp; <span class="style23" style="font-family:  Arial, Helvetica, sans-serif;;"><span style="font-size: 12px;">Status</span></span>&nbsp; &nbsp;
     <select name="Status" size="3" id="Status" required="required" > 
       <option selected="Net Check In">Net Check In</option> 
       <option>Exercise</option> 
       <option>REAL EVENT</option>
     </select>
-    </small></big>&nbsp; &nbsp;
+    &nbsp; &nbsp;
     Band&nbsp; &nbsp;<span class="style2">
     <select name="Band" size="3" id="Band" required="required">
       <option>-N/A-</option>
@@ -825,7 +825,7 @@ return true;
       <option>UHF</option>
       <option>HF</option>
     </select>
-&nbsp;&nbsp; <small>Mode</small> &nbsp; </span>
+&nbsp;&nbsp; Mode &nbsp; </span>
     <select name="Session" size="3" id="Session" required="required">
       <option>Telnet</option>
       <option>Vara FM</option>
@@ -848,16 +848,16 @@ return true;
     <span class="style2">&nbsp;<br />
 &nbsp;</span><br />
     <br />
-    <span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><big>
-&nbsp;<span class="style1">&nbsp;</span></big></span><span class="style22">Send To</span></span>
+    <span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;">
+&nbsp;<span class="style1">&nbsp;</span></span><span class="style22">Send To</span></span>
 &nbsp; 
     <input placeholder="Seperate Calls/ Emails with a semi-colon; You can modify prior to posting." maxlength="75" size="77" name="MsgTo"  id="MsgTo" onchange="this.value=this.value.toUpperCase();" onblur= "store();"/> 
-    <span class="style3"><big><small><small>
+    <span class="style3">
     <input name="Title" type="hidden" id="Title" value="Winlink Net" />
-&nbsp;&nbsp;&nbsp;</small></small></big></span>  <span class="style12"> <a href="javascript:clearsendto();" class="style23">Clear &quot;ALL Send To&quot; Entries. </a><br />
-    <span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style23">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></big></span></span></span><em>Entries  will remain until you change or clear them.</em><br />
+&nbsp;&nbsp;&nbsp;</span>  <span class="style12"> <a href="javascript:clearsendto();" class="style23">Clear &quot;ALL Send To&quot; Entries. </a><br />
+    <span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style23">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span></span><em>Entries  will remain until you change or clear them.</em><br />
      <span style="font-family:  Arial, Helvetica, sans-serif;;"></span>
-     <span style="font-family:  Arial, Helvetica, sans-serif;;"><small>&nbsp;
+     <span style="font-family:  Arial, Helvetica, sans-serif;;">&nbsp;
 &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -867,17 +867,16 @@ return true;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
 &nbsp; 
-     </small></span> &nbsp; Call Signs of Initial On-Site Operator(s)&nbsp; 
-     <input placeholder="Enter Only CALLSIGNS! separate with a space or comma." maxlength="60" required="required" size="45" name="Assigned" id="Assigned" onchange="this.value=this.value.toUpperCase();"/> <br />
+     </span> &nbsp; Call Signs of Initial On-Site Operator(s)&nbsp; 
+     <input placeholder="Enter Only CALLSIGNS! separate with a space or comma." maxlength="65" required="required" size="50" name="Assigned" id="Assigned" onchange="this.value=this.value.toUpperCase();"/> <br />
      <br />&nbsp; 
-    &nbsp;&nbsp;<big><small>Sender</small> </big>&nbsp;
+    &nbsp;&nbsp;Sender Call Sign&nbsp;
     <input title="Call sign or tactical being used to send mail" readonly="readonly" maxlength="16" size="17" name="MsgSender" value="{MsgSender}" />
-	&nbsp;&nbsp;<big><small>Operator Name</small> </big>&nbsp;
+	&nbsp;&nbsp;Operator Name &nbsp;
     <input title="Your Name" maxlength="20" size="10" name="MsgOpName" />
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp;&nbsp;<big><small>On Emergency Power:</small> </big>&nbsp;
+&nbsp; &nbsp; On Emergency Power: &nbsp;
 <!-- <input name="Epower" type="checkbox" id="Epower" " value="Yes"/> -->
 <input name="Epower" type="radio" id="yes" value="yes">
 <label for="yes">Yes</label>
@@ -888,22 +887,22 @@ return true;
 </td>
 </tr>
 <tr>
-<td colspan="4" bgcolor="#f8f8ff" style="text-align: center; vertical-align: middle; background-color: " pbzloc="6">
+<td colspan="4" bgcolor="#dee9f9" style="text-align: center; vertical-align: middle; background-color: " pbzloc="6">
 <div align="left">
   <p><br />
-      <span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><big>&nbsp;&nbsp;</big></span></span>&nbsp;Specific Location<small><big><big>&nbsp;</big></big>
-      <big> 
+      <span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;">&nbsp;&nbsp;</span></span>&nbsp;Specific Location&nbsp;
+       
   <input placeholder="Example: EOC Name, Tactical Call, HOME, MOBILE, etc..." size="75" required="required" name="Location" id="Location" maxlength="70"  />
 &nbsp;&nbsp;
 <input name="ExtGPS" type="hidden" id="ExtGPS" value="{GPS_SIGNED_DECIMAL}" />
 <input name="WithSpaces" type="hidden" id="WithSpaces" />
 <input name="NoSpaces" type="hidden" id="NoSpaces" />
 <input name="addformat" type="hidden" id="addformat" />
-      </big></small></p>
-  <p><span class="style12"> <em> &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; </em>GPS is Auto filled if GPS device is working in Express, or enter decimal degrees manually. </span><span class="style44 style7"><span class="style7 style23"><span style="font-family: Arial, Helvetica, sans-serif;;"><big>&nbsp;</big></span></span></span> <span class="style23">Ex:&nbsp;38.5567, -121.7932</span> &nbsp;&nbsp;<span class="style46">Note the comma </span>&nbsp; &nbsp; </p>
-  <p><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><big>&nbsp;
+      </p>
+  <p><span class="style12"> <em> &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; </em>GPS is Auto filled if GPS device is working in Express, or enter decimal degrees manually. </span><span class="style44 style7"><span class="style7 style23"><span style="font-family: Arial, Helvetica, sans-serif;;">&nbsp;</span></span></span> <span class="style23">Ex:&nbsp;38.5567, -121.7932 &nbsp;&nbsp;Note the comma</span>&nbsp; &nbsp; </p>
+  <p><span style="color: black;"><span style="font-family:  Arial, Helvetica, sans-serif;; color: black;">&nbsp;
     <input name="GPS" type="hidden" id="GPS" value="{GPS_SIGNED_DECIMAL}" />
-    &nbsp;</big></span></span>Decimal GPS Coordinates 
+    &nbsp;</span></span>Decimal GPS Coordinates 
     <input name="GPS2" type="text" id="GPS2" size="30" onchange="convertthis()" onKeyPress="return isNumberKey(event)"  maxlength="30" title= "If entering manually use format: 40.3568, -111.7213 " placeholder="EXAMPLE: 40.3568, -111.7213" />
 <em>&nbsp; <em></em> <em></em>MGRS </em>Coordinates 
      <input name="MGRS" type="text" id="MGRS" size="30" maxlength="30" readonly=readonly />
@@ -916,7 +915,7 @@ return true;
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: center; height: 70px;" colspan="5">
-<div align="left"><span style="font-family:  Arial, Helvetica, sans-serif;;"><span style="font-style: italic;"> &nbsp;<span class="style15" style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><span class="style9" style="; color: black;"><big><big><big>&nbsp;</big></big></big></span></span></span><span class="style17"><span class="style18"><big>Traffic</big></span></span><span style="font-style: italic;">&nbsp; 
+<div align="left"><span style="font-family:  Arial, Helvetica, sans-serif;;"><span style="font-style: italic;"> &nbsp;<span class="style15" style="font-family:  Arial, Helvetica, sans-serif;; color: black;"><span class="style9" style="; color: black;">&nbsp;</span></span></span><span class="style17"><span class="style18">Traffic</span></span><span style="font-style: italic;">&nbsp; 
   <span class="style23">Max Characters 250 </span><br />
   &nbsp;</span></span> 
   <textarea cols="140" rows="4" maxlength="250" name="Comments" id="Comments" onkeyup="AutoGrowTextArea(this)" onchange="this.value=RWS(this.value)"></textarea> 
@@ -924,30 +923,30 @@ return true;
 </td>
 </tr>
 <tr>
-<td colspan="2"><span style="font-family:  Arial, Helvetica, sans-serif;;"><small> <span style="font-family:  Arial, Helvetica, sans-serif;">
+<td colspan="2"><span style="font-family:  Arial, Helvetica, sans-serif;;"> <span style="font-family:  Arial, Helvetica, sans-serif;">
   <input name="savebtn" type="button" id="savebtn"  onclick="SaveData()" value="Save Check in data" />
-</span></small>&nbsp;&nbsp;&nbsp; <small>
+</span>&nbsp;&nbsp;&nbsp; 
 <input value="Submit" style="height: 28px; width: 52px; " size="8" name="Submit" method="Post" id="Submit" enctype="multipart/form-data" class="SubmitBtn" type="submit" />
-&nbsp; </small></span>
+&nbsp; </span>
  <input type="reset" value="Reset Form" onclick="myreset();" />
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp;
-&nbsp;&nbsp;<span style="font-family:  Arial, Helvetica, sans-serif;;"><small><span style="color: black;"><span><span style="font-size: 12px;"></span></span></span><span style="color: rgb(128, 0, 0);"><span style="font-size: 12px;">&nbsp; </span>&nbsp;
+&nbsp;&nbsp;<span style="font-family:  Arial, Helvetica, sans-serif;;"><span style="color: black;"><span><span style="font-size: 12px;"></span></span></span><span style="color: rgb(128, 0, 0);"><span style="font-size: 12px;">&nbsp; </span>&nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp; &nbsp; &nbsp; </span></small></span><span style="font-family:  Arial, Helvetica, sans-serif;;"><small><span style="color: rgb(128, 0, 0);">
+&nbsp; &nbsp; &nbsp; </span></span><span style="font-family:  Arial, Helvetica, sans-serif;;"><span style="color: rgb(128, 0, 0);">
 &nbsp; &nbsp; &nbsp;
-&nbsp;</span></small></span>
-&nbsp; &nbsp; &nbsp;&nbsp;<span style="font-family:  Arial, Helvetica, sans-serif;;"><small>&nbsp;
-&nbsp; <big><span class="style25">Ver 0.4</span>&nbsp;&nbsp;&nbsp;<span style="font-size: 12px;">
-<input name="Templateversion" type="hidden" id="Templateversion" value="Winlink Check in 0.4" />
-</span></big></small></span></td>
+&nbsp;</span></span>
+&nbsp; &nbsp; &nbsp;&nbsp;<span style="font-family:  Arial, Helvetica, sans-serif;;">&nbsp;
+&nbsp; <span class="style25">Ver 0.5</span>&nbsp;&nbsp;&nbsp;<span style="font-size: 12px;">
+<input name="Templateversion" type="hidden" id="Templateversion" value="Winlink Check in 0.5" />
+</span></span></td>
 </tr>
 </tbody>
 </table>
 <span style="font-family:  Arial, Helvetica, sans-serif;;"><br />
-<small>&nbsp;</small></span></td>
+&nbsp;</span></td>
 </tr>
 </tbody>
 </table>
