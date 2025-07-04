@@ -38,8 +38,6 @@ TAB Delimited:
 <var DateTime>	<var MsgSender>	<var MsgOpName>	<var Assigned>	<var Location>	<var GPS2>	<var MGRS>	<var Band>	<var Session>	<var Gateway>	<var EPower>	<var w3w>
 
 
-
-
 ----------
 Version 0.5
 

@@ -757,7 +757,6 @@ document.getElementById('NoSpaces').value ='';
 
 
 function isNumberKey(evt)  
-
 {  
 if(event.keyCode==13){return false;}
 if(event.keyCode==32){return false;}
@@ -771,7 +770,36 @@ return false;
 
 return true;  
   
-}  
+}
+
+function openWhat3words() {
+	// You can use a default W3W address, or try to get the current value from the input field
+	var w3wInput = document.getElementById('w3w');
+	var w3wValue = w3wInput.value.trim();
+
+	// If the input field has a valid-looking w3w address, use it. Otherwise, use a default.
+	// This regex checks for three word.word.word format, with optional /// prefix.
+	var w3wRegex = /^(?:\/\/\/)?([a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+)$/;
+	var urlToOpen = 'https://what3words.com/';
+
+	if (w3wRegex.test(w3wValue)) {
+		// Remove any leading "///" for the URL path
+		var cleanW3w = w3wValue.replace(/^\/\/\//, '');
+		urlToOpen += cleanW3w;
+	} else {
+		// Default to a common or example address if the input is empty or invalid
+		urlToOpen += 'jaws.square.bikes'; // A neutral, easy-to-remember example
+		// Alternatively, you could just open 'https://what3words.com/' for the user to search directly.
+	}
+
+	// Open the URL in a new browser window/tab
+	// 'width=900,height=600' are suggestions; WinLink's embedded browser might ignore these for popups.
+	window.open(urlToOpen, '_blank', 'width=900,height=600,resizable=yes,scrollbars=yes');
+
+	// Provide a clear instruction to the user since automatic pasting isn't possible
+	alert("A new window/tab has opened with What3words.com. Please find your location, copy the 3-word address (e.g., ///word.word.word), and paste it back into the 'What3words location' field on this form.");
+}
+  
 </script></head>
 <body >
 <span style="font-family:  Arial, Helvetica, sans-serif;"> </span>
@@ -909,7 +937,8 @@ return true;
      &nbsp
      &nbsp;</p>
      <p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;What3words location: 
-    <input name="w3w" type="text" id="w3w" size="50" placeholder = " Ex. cloak.feels.armed" /></p>  
+    <input name="w3w" type="text" id="w3w" size="50" placeholder = " Ex. cloak.feels.armed" />&nbsp; &nbsp;
+	<input type="button" value="Find on What3words" onclick="openWhat3words()" /></p>  
 </div>
 </td>
 </tr>
