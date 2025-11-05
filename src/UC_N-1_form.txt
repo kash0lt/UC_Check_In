@@ -1,0 +1,24 @@
+Form:Form:UC_N-1_form_Initial.html, UC_N-1_form_Viewer.html
+
+To: <var MsgTo>
+
+Subject: UCARES N-1 Form-<var MsgSender>
+
+SeqInc: 1
+
+Msg:
+-
+<var Title>
+Date/Time: <var DateTime>
+Count: <SeqNum>
+Box 2: <var county>
+Box 3: <var location>
+Box 4: <var weather>
+Box 5: <var power_status>
+Box 6: <var internet_cell>
+Box 7: <var road_conditions>
+Box 8: <var incidents_hazards>
+
+Box 9: <var additional_comments>
+Box 10: <var ucares_level>
+Box 11: <var yourname> - <var MsgSender>
