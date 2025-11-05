@@ -1,4 +1,4 @@
-Form:Form:UC_N-1_form_Initial.html, UC_N-1_form_Viewer.html
+Form:UC_N-1_form_Initial.html, UC_N-1_form_Viewer.html
 
 To: <var MsgTo>
 
