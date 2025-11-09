@@ -193,7 +193,9 @@
             <tr>
                 <td colspan="2">
                     <label for="MsgTo">Send message to:</label>
-                    <input readonly="readonly" maxlength="75" size="77" name="MsgTo" value="{var MsgTo}" />
+                    <input readonly="readonly" maxlength="75" size="77" name="MsgTo" value="{var MsgTo}" /><br /><br />
+                    <label for="MsgCc">Add CC: </label>
+                    <input readonly="readonly" maxlength="55" size="55" name="MsgCc" value="{var MsgCc}" />
                 </td>
             </tr>
             <tr>
@@ -288,9 +290,9 @@
                     <!-- <button type="submit">Submit N-1 Report</button> --> &nbsp;<br>
                 </td>
             </tr>
-            <input name="Templateversion" type="hidden" id="Templateversion" value="UC N-1 v0.1" />
+            <input name="Templateversion" type="hidden" id="Templateversion" value="{var Templateversion}" />
         </table>
-
+        <p style="font-style: italic; font-size: small;">WinLink UC N-1 Form v0.3</p>
     </div>
 
 </body>

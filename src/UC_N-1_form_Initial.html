@@ -195,9 +195,12 @@
                 <tr>
                     <td colspan="2">
                         <label for="MsgTo">Send message to:</label>
-                        <input placeholder="Separate Emails with semicolon" maxlength="75" size="77" name="MsgTo" id="MsgTo" onchange="this.value=this.value.toUpperCase();" />
+                        <input placeholder="Separate Emails with semicolon" maxlength="75" size="77" name="MsgTo" id="MsgTo" onchange="this.value=this.value.toUpperCase();" /><br /><br />
+                        <label for="MsgCc">Add CC:</label>
+                        <input placeholder="Add CC addresses (optional)" maxlength="55" size="55" name="MsgCc" id="MsgCc" onchange="this.value=this.value.toUpperCase();" />
                     </td>
                 </tr>
+
                 <tr>
                     <td>
                         <label for="DateTime">Box 1: Date and Local Time</label>
@@ -313,9 +316,9 @@
                         <button type="submit">Submit N-1 Report</button>
                     </td>
                 </tr>
-                <input name="Templateversion" type="hidden" id="Templateversion" value="UC N-1 v0.2" />
+                <input name="Templateversion" type="hidden" id="Templateversion" value="UC N-1 v0.3" />
             </table>
-        </form>
+        </form><p style="font-style: italic; font-size: small;">WinLink UC N-1 Form v0.3</p>
     </div>
 
 </body>
