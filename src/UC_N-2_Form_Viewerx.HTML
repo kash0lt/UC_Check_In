@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-2 Found/Missing Person Report</title>
+    
+    <style>
+        /* Base styles derived from Inter font and Tailwind defaults */
+        /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap'); */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            padding: 1rem; /* p-4 equivalent */
+        }
+        @media (min-width: 640px) {
+            body {
+                padding: 2rem; /* sm:p-8 equivalent */
+            }
+        }
+
+        /* Container styles */
+        .container {
+            max-width: 48rem; /* max-w-4xl equivalent */
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl equivalent */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-2xl equivalent */
+            overflow: hidden;
+        }
+
+        /* Header/Title Bar styles */
+        .header {
+            background-color: #93c5fd; /* bg-blue-300 equivalent */
+            padding: 1rem;
+            text-align: center;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+        .header h1 {
+            font-size: 1.875rem; /* text-3xl equivalent */
+            font-weight: 800; /* font-extrabold equivalent */
+            color: #1e3a8a; /* text-blue-900 equivalent */
+            letter-spacing: 0.05em; /* tracking-wider equivalent */
+        }
+        .header p {
+            font-size: 0.875rem; /* text-sm equivalent */
+            color: #1d4ed8; /* text-blue-700 equivalent */
+            margin-top: 0.25rem;
+        }
+
+        /* Important Note styles */
+        .note-bar {
+            background-color: #FFEB3B; /* Changed to Canary Yellow */
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom-left-radius: 0.5rem; /* rounded-b-lg equivalent */
+            border-bottom-right-radius: 0.5rem; /* rounded-b-lg equivalent */
+        }
+        @media (min-width: 640px) {
+            .note-bar {
+                border-radius: 0; /* sm:rounded-none equivalent */
+            }
+        }
+        .note-bar p {
+            font-weight: 700; /* font-bold equivalent */
+            text-transform: uppercase;
+            color: #854d0e; /* text-yellow-900 equivalent */
+            font-size: 0.875rem; /* text-sm equivalent */
+        }
+        @media (min-width: 640px) {
+            .note-bar p {
+                font-size: 1rem; /* sm:text-base equivalent */
+            }
+        }
+
+        /* Form section styles */
+        .form-content {
+            padding: 1.5rem; /* p-6 equivalent */
+        }
+        @media (min-width: 640px) {
+            .form-content {
+                padding: 2rem; /* sm:p-8 equivalent */
+            }
+        }
+        .form-content > * + * {
+            margin-top: 1.5rem; /* space-y-6 equivalent */
+        }
+
+        /* Routing section (TO/CC) styles */
+        .routing-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem; /* gap-6 equivalent */
+            padding-bottom: 1.5rem;
+            border-bottom: 4px solid #bfdbfe; /* border-b-4 border-blue-100 equivalent */
+        }
+        @media (min-width: 768px) {
+            .routing-section {
+                grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 equivalent */
+            }
+        }
+        .routing-field {
+            display: flex;
+            flex-direction: column;
+        }
+        .routing-field label {
+            font-weight: 700;
+            color: #1d4ed8; /* text-blue-700 equivalent */
+            margin-bottom: 0.25rem;
+        }
+        .routing-field input {
+            border: 2px solid #60a5fa; /* border-2 border-blue-400 equivalent */
+            padding: 0.5rem;
+            border-radius: 0.5rem; /* rounded-lg equivalent */
+            transition: all 0.15s ease-in-out; /* transition duration-150 equivalent */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm equivalent */
+        }
+        .routing-field input:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            border-color: #3b82f6; /* focus:border-blue-500 equivalent */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* focus:ring-blue-500 equivalent */
+        }
+
+        /* Table styles */
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #9ca3af; /* border border-gray-400 equivalent */
+        }
+        .form-table td {
+            vertical-align: top;
+            padding: 0.75rem; /* p-3 equivalent */
+            border: 1px solid #d1d5db; /* border border-gray-300 equivalent */
+            width: 50%;
+        }
+        /* Style for the instruction cell (Box 3 right) */
+        .instruction-cell {
+            background-color: #f9fafb; /* bg-gray-50 equivalent */
+            font-size: 0.875rem; /* text-sm equivalent */
+            color: #4b5563; /* text-gray-600 equivalent */
+            font-style: italic;
+            /* Removed display: flex and align-items: center to ensure text spans the full width of the column */
+            text-align: left; 
+        }
+        /* Ensure the paragraph inside takes the full width */
+        .instruction-cell p {
+            width: 100%; 
+            margin: 0;
+        }
+        .full-width-cell {
+            width: 100%;
+        }
+
+        /* Input/Textarea styles within the table (Boxes 1-12) */
+        .form-table label {
+            font-weight: 600; /* font-semibold equivalent */
+            color: #374151; /* text-gray-700 equivalent */
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        .form-table input[type="text"],
+        .form-table input[type="number"],
+        .form-table input[type="date"],
+        .form-table input[type="time"],
+        .form-table textarea {
+            /* DECREASING LENGTH (WIDTH) BY 10 PIXELS */
+            width: calc(100% - 10px); 
+            border: 1px solid #d1d5db; /* border border-gray-300 equivalent */
+            padding: 0.5rem;
+            border-radius: 0.5rem; /* rounded-lg equivalent */
+            transition: all 0.15s ease-in-out;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            margin-top: 4px;
+        }
+        .form-table input:focus,
+        .form-table textarea:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            border-color: #3b82f6; /* focus:border-blue-500 equivalent */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* focus:ring-blue-500 equivalent */
+        }
+
+        /* Submit button styles */
+        .submit-container {
+            padding-top: 1rem; /* pt-4 equivalent */
+            display: flex;
+            justify-content: flex-end; /* justify-end equivalent */
+        }
+        .submit-button {
+            background-color: #4e26dc; /* bg-blue-600 equivalent */
+            color: #ffffff;
+            font-weight: 700;
+            padding-top: 0.75rem; /* py-3 equivalent */
+            padding-bottom: 0.75rem;
+            padding-left: 1.5rem; /* px-6 equivalent */
+            padding-right: 1.5rem;
+            border-radius: 9999px; /* rounded-full equivalent */
+            transition: all 0.2s ease-in-out; /* transition duration-200 equivalent */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg equivalent */
+        }
+        .submit-button:hover {
+            background-color: #999595; /* hover:bg-grey 700 equivalent */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* hover:shadow-xl equivalent */
+        }
+        .submit-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.5); /* focus:ring-4 focus:ring-red-500/50 equivalent */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Header/Title Bar --><header class="header">
+            <h1>N-2 Form</h1>
+            <p>UCARES Found or missing person report</p>
+        </header>
+
+        <!-- Important Note --><div class="note-bar">
+            <p>NOTE: FOUND CHILDREN MUST BE RELEASED TO POLICE, NOT THE PARENTS</p>
+        </div>
+
+        <!-- Main Form Content --><!-- <form class="form-content" onsubmit="return confirm('To complete your form submission, click OK and close the open browser window. You will return to the new message window so you can post your message to the outbox');" id="thisN2Form" enctype="multipart/form-data" action="http://{FormServer}:{FormPort}" method="POST"> -->
+
+            <!-- Winlink Email Headers (Routing) --><div class="routing-section">
+                <input name="Title" type="hidden" id="Title" value="UCARES N-2 Form Found or Missing Person Report">
+                <!-- TO: Email Address --><div class="routing-field">
+                    <label for="MsgTo">TO:</label>
+                    <input type="text" readonly="readonly" id="MsgTo" name="MsgTo" value="{var MsgTo}" />
+                </div>
+                
+                <!-- CC: Email Address --><div class="routing-field">
+                    <label for="MsgCc">CC:</label>
+                    <input readonly="readonly" id="MsgCc" name="MsgCc" value="{var MsgCc}" />
+                </div>
+            </div>
+            
+            <!-- Table for Boxes 1 through 12 --><table class="form-table">
+                <tbody>
+
+                    <!-- Row 1: Box 1 (Date) & Box 2 (Time) --><tr>
+                        <td>
+                            <label for="Dateval">Box 1: Date</label>
+                            <!-- onfocus triggers the JS function to set the current date -->
+                             <input type="text" readonly="readonly" id="Dateval" name="Dateval" value="{var Dateval}" />
+                        </td>
+                        <td>
+                            <label for="Timeval">Box 2: Time</label>
+                            <!-- onfocus triggers the JS function to set the current time -->
+                             <input type="text" readonly="readonly" id="Timeval" name="Timeval" value="{var Timeval}" />
+                        </td>
+                    </tr>
+
+                    <!-- Row 2: Box 3 (Location) & Instructions --><tr>
+                        <td>
+                            <label for="location">Box 3: Location</label>
+                            <input type="text" readonly="readonly" id="location" name="location" value="{var location}" />
+                        </td>
+                        <td class="instruction-cell">
+                            <p>Listen to net control instructions or pick one of '///What3Words', 'Lat./Long', or street name or nearest town.</p>
+                            <!-- <p><input type="button" value="Find on What3words" onclick="openWhat3words()" /></p> --> &nbsp;<br>
+                        </td>
+                    </tr>
+                    
+                    <!-- Row 3: Box 4 (Name) & Box 5 (Age) --><tr>
+                        <td>
+                            <label for="person_name">Box 4: Person's Name (No Last Name)</label>
+                            <input type="text" readonly="readonly" id="person_name" name="person_name" value="{var person_name}" />
+                        </td>
+                        <td>
+                            <label for="age">Box 5: Age</label>
+                            <input type="text" readonly="readonly" id="age" name="age" value="{var age}" />
+                        </td>
+                    </tr>
+
+                    <!-- Row 4: Box 6 (Hair Color) & Box 7 (Height/Weight) --><tr>
+                        <td>
+                            <label for="hair_color">Box 6: Hair Color</label>
+                            <input type="text" readonly="readonly" id="hair_color" name="hair_color" value="{var hair_color}" />
+                        </td>
+                        <td>
+                            <label for="height_weight">Box 7: Height/Weight</label>
+                            <input type="text" readonly="readonly" id="height_weight" name="height_weight" value="{var height_weight}" />
+                        </td>
+                    </tr>
+
+                    <!-- Row 5: Box 8 (Clothing) & Box 9 (Last Known Location) --><tr>
+                        <td>
+                            <label for="clothing">Box 8: Clothing</label>
+                            <input type="text" readonly="readonly" id="clothing" name="clothing" value="{var clothing}" />
+                        </td>
+                        <td>
+                            <label for="last_known_location">Box 9: Last Known Location</label>
+                            <input type="text" readonly="readonly" id="last_known_location" name="last_known_location" value="{var last_known_location}" />
+                        </td>
+                    </tr>
+                    
+                    <!-- Row 6: Box 10 (Additional Comments) - Spans Two Columns --><tr>
+                        <td class="full-width-cell" colspan="2">
+                            <label for="additional_comments">Box 10: Additional Comments (Behavior, injuries, distinguishing marks)</label>
+                            <textarea id="additional_comments" name="additional_comments" rows="4" readonly="readonly">{var additional_comments}</textarea>
+                        </td>
+                    </tr>
+
+                    <!-- Row 7: Box 11 (Operator Name) & Box 12 (Call Sign) --><tr>
+                        <td>
+                            <label for="operator_name">Box 11: Operator Name</label>
+                            <input type="text" readonly="readonly" id="operator_name" name="operator_name" value="{var operator_name}" />
+                        </td>
+                        <td>
+                            <label for="MsgSender"></label>Box 12: Call Sign</label>
+                            <input type="text" readonly="readonly" id="MsgSender" name="MsgSender" size="30" value="{var MsgSender}" />
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+            <!-- Submit Button (Winlink client will serialize form data upon submission) --><div class="submit-container">
+                <!-- <button type="submit" class="submit-button">
+                    Submit Report
+                </button> --> &nbsp;<br>
+            </div>
+            <!-- <input name="Templateversion" type="hidden" id="Templateversion" value="UC N-2 v0.1" /> -->
+        <!-- </form> -->
+        <p style="font-style: italic; font-size: small;">{var Templateversion}</p>
+    </div>
+</body>
+</html>

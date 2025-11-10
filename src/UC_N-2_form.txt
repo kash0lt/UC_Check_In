@@ -1,0 +1,29 @@
+Form:UC_N-2_Form_Initial, UC_N-2_Form_Viewer.html
+
+To: <var MsgTo>
+Cc: <var MsgCc>
+
+Subject: UCARES N-2 Form Found/Missing Person Report - <var MsgSender>
+
+SeqInc: 1
+
+Msg:
+-
+Winlink Counter: <SeqNum>
+
+<var Title>
+Box 1: <var Dateval>
+Box 2: <var Timeval>
+Box 3: <var location>
+Box 4: <var person_name>
+Box 5: <var age>
+Box 6: <var hair_color>
+Box 7: <var height_weight>
+Box 8: <var clothing>
+Box 9: <var last_known_location>
+Box 10: <var additional_comments>
+Box 11: <var operator_name>
+Box 12: <var MsgSender>
+
+============
+<var Templateversion>
