@@ -136,50 +136,6 @@
             background-color: #0056b3;
         }
     </style>
-    <!-- <script>
-        function TimeNow(Timefld, FocusFld) {
-            var txt;
-            var d = new Date(),
-            thisyear = d.getFullYear();
-            thismonth= d.getMonth()+1;
-            // thismonth = thismonth+1;
-            thisday = (d.getDate()<10?'0':'') + d.getDate();
-            h = (d.getHours()<10?'0':'') + d.getHours()
-            m = (d.getMinutes()<10?'0':'') + d.getMinutes()
-            s = (d.getSeconds()<10?'0':'') + d.getSeconds();
-            var myprompt = thisyear+ '-'+thismonth+'-'+thisday+' '+h + ':' + m;
-            var RightNow = prompt("", myprompt);
-            document.getElementById(Timefld).value = RightNow;
-        }
-
-        function openWhat3words() {
-            // You can use a default W3W address, or try to get the current value from the input field
-            var w3wInput = document.getElementById('location');
-            var w3wValue = w3wInput.value.trim();
-
-            // If the input field has a valid-looking w3w address, use it. Otherwise, use a default.
-            // This regex checks for three word.word.word format, with optional /// prefix.
-            var w3wRegex = /^(?:\/\/\/)?([a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+)$/;
-            var urlToOpen = 'https://what3words.com/';
-
-            if (w3wRegex.test(w3wValue)) {
-                // Remove any leading "///" for the URL path
-                var cleanW3w = w3wValue.replace(/^\/\/\//, '');
-                urlToOpen += cleanW3w;
-            } else {
-                // Default to a common or example address if the input is empty or invalid
-                urlToOpen += 'jaws.square.bikes'; // A neutral, easy-to-remember example
-                // Alternatively, you could just open 'https://what3words.com/' for the user to search directly.
-            }
-
-            // Open the URL in a new browser window/tab
-            // 'width=900,height=600' are suggestions; WinLink's embedded browser might ignore these for popups.
-            window.open(urlToOpen, '_blank', 'width=900,height=600,resizable=yes,scrollbars=yes');
-
-            // Provide a clear instruction to the user since automatic pasting isn't possible
-            alert("A new window/tab has opened with What3words.com. Please find your location, copy the 3-word address (e.g., ///word.word.word), and paste it back into the 'What3words location' field on this form.");
-        } 
-    </script> -->
 </head>
 <body>
 
@@ -292,7 +248,7 @@
             </tr>
             <input name="Templateversion" type="hidden" id="Templateversion" value="{var Templateversion}" />
         </table>
-        <p style="font-style: italic; font-size: small;">WinLink UC N-1 Form v0.3</p>
+        <p style="font-style: italic; font-size: small;">WinLink UC N-1 Form v0.4</p>
     </div>
 
 </body>

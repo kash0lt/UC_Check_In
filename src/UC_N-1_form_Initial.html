@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
 <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
     <title>N-1 Local Conditions Report</title>
     <style>
@@ -16,55 +17,59 @@
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            /* Added Border to the container */
             border: 2px solid #333;
         }
 
-        /* Header Styling */
         .form-header {
             text-align: center;
-            color: #000; /* Black text */
-            background-color: #ADD8E6; /* Light Blue background */
+            color: #000;
+            background-color: #ADD8E6;
             padding: 15px;
             border-radius: 4px 4px 0 0;
-            margin-bottom: 0; /* Ensures it sits right against the table */
+            margin-bottom: 0;
             font-size: 1.5em;
             font-weight: bold;
         }
 
-        /* Styling for the two lines in the header */
         .form-header p {
-            margin: 0; /* Reset margins for internal paragraphs */
+            margin: 0;
             padding: 0;
             line-height: 1.2;
         }
         .form-header .sub-header {
-            font-size: 0.6em; /* Smaller font size for the second line */
+            font-size: 0.6em;
             font-weight: normal;
             margin-top: 5px;
         }
 
-        /* Table and Cell Styling */
         .n1-table {
             width: 100%;
             border-collapse: collapse;
-            table-layout: fixed; /* Ensures column widths are respected */
+            table-layout: fixed;
         }
 
         .n1-table td {
-            width: 50%; /* Sets all cells to equal width (50% each) */
+            width: 50%;
             padding: 15px;
             border: 1px solid #ddd;
             background-color: #f9f9f9;
             vertical-align: top;
         }
 
-        /* Input and Label Styling */
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: bold; /* This makes all box title labels bold */
+            font-weight: bold;
             color: #555;
+        }
+
+        /* This forces these specific boxes to a fixed size */
+        #MsgTo {
+            width: 350px !important; /* Adjust pixels as needed */
+        }
+
+        #ActivityDateTime1 {
+            width: 200px !important; /* Adjust pixels as needed */
         }
 
         input[type="text"],
@@ -83,14 +88,12 @@
             min-height: 80px;
         }
 
-        /* Radio Group Styling */
         .radio-group fieldset {
             border: none;
             padding: 0;
             margin: 0;
         }
 
-        /* ONLY the labels for the radio OPTIONS (inside the fieldset) are set to normal weight */
         .radio-group fieldset label {
             font-weight: normal;
             display: flex;
@@ -103,21 +106,26 @@
             margin-right: 10px;
         }
 
-        /* Prompt Styling */
         .prompt {
             font-size: 0.85em;
-            color: #000; /* Black text */
+            color: #000;
             margin-top: 5px;
             padding: 8px;
-            background-color: #E0E0E0; /* Light Grey background */
+            background-color: #E0E0E0;
             border-radius: 4px;
-            font-weight: bold; /* Bold text */
+            font-weight: bold;
         }
 
-        /* Button Styling */
         .submit-cell {
             text-align: center;
-            padding: 20px 0 0 0;
+            padding: 20px 0 10px 0;
+            border: none;
+            background-color: #fff;
+        }
+
+        .utility-cell {
+            text-align: center;
+            padding: 10px 0 20px 0;
             border: none;
             background-color: #fff;
         }
@@ -129,56 +137,114 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
+            margin: 5px;
         }
 
         button:hover {
             background-color: #0056b3;
         }
+
+        button.clear-btn { background-color: #007bff; }
+        button.clear-btn:hover { background-color: #0056b3; }
+
+        button.save-btn { background-color: #007bff; }
+        button.save-btn:hover { background-color: #0056b3; }
+
+        button.load-btn { background-color: #969595; }
+        button.load-btn:hover { background-color: #767676; }
     </style>
     <script>
         function TimeNow(Timefld, FocusFld) {
-            var txt;
             var d = new Date(),
             thisyear = d.getFullYear();
-            thismonth= d.getMonth()+1;
-            // thismonth = thismonth+1;
-            thisday = (d.getDate()<10?'0':'') + d.getDate();
-            h = (d.getHours()<10?'0':'') + d.getHours()
-            m = (d.getMinutes()<10?'0':'') + d.getMinutes()
-            s = (d.getSeconds()<10?'0':'') + d.getSeconds();
+            var thismonth = d.getMonth()+1;
+            var thisday = (d.getDate()<10?'0':'') + d.getDate();
+            var h = (d.getHours()<10?'0':'') + d.getHours();
+            var m = (d.getMinutes()<10?'0':'') + d.getMinutes();
             var myprompt = thisyear+ '-'+thismonth+'-'+thisday+' '+h + ':' + m;
-            var RightNow = prompt("", myprompt);
-            document.getElementById(Timefld).value = RightNow;
+            var RightNow = prompt("Confirm or adjust date/time:", myprompt);
+            if (RightNow != null) {
+                document.getElementById(Timefld).value = RightNow;
+            }
         }
 
         function openWhat3words() {
-            // You can use a default W3W address, or try to get the current value from the input field
             var w3wInput = document.getElementById('location');
             var w3wValue = w3wInput.value.trim();
-
-            // If the input field has a valid-looking w3w address, use it. Otherwise, use a default.
-            // This regex checks for three word.word.word format, with optional /// prefix.
             var w3wRegex = /^(?:\/\/\/)?([a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+)$/;
             var urlToOpen = 'https://what3words.com/';
 
             if (w3wRegex.test(w3wValue)) {
-                // Remove any leading "///" for the URL path
                 var cleanW3w = w3wValue.replace(/^\/\/\//, '');
                 urlToOpen += cleanW3w;
             } else {
-                // Default to a common or example address if the input is empty or invalid
-                urlToOpen += 'jaws.square.bikes'; // A neutral, easy-to-remember example
-                // Alternatively, you could just open 'https://what3words.com/' for the user to search directly.
+                urlToOpen += 'jaws.square.bikes';
             }
 
-            // Open the URL in a new browser window/tab
-            // 'width=900,height=600' are suggestions; WinLink's embedded browser might ignore these for popups.
             window.open(urlToOpen, '_blank', 'width=900,height=600,resizable=yes,scrollbars=yes');
+            alert("Find your location on What3words, copy it, and paste it back into the field.");
+        }
 
-            // Provide a clear instruction to the user since automatic pasting isn't possible
-            alert("A new window/tab has opened with What3words.com. Please find your location, copy the 3-word address (e.g., ///word.word.word), and paste it back into the 'What3words location' field on this form.");
-        } 
+        function clearForm() {
+            if (confirm("Are you sure you want to clear all data from this form?")) {
+                document.getElementById('thisN1Form').reset();
+            }
+        }
+
+        function saveFormAsJSON() {
+            const form = document.getElementById('thisN1Form');
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value; });
+
+            const jsonString = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonString], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 16);
+            link.href = url;
+            link.download = `N1_Report_${timestamp}.txt`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // NEW: Function to load JSON data back into the form
+        function loadFormFromJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    const form = document.getElementById('thisN1Form');
+                    
+                    for (const key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const elements = form.elements[key];
+                            if (elements) {
+                                // Handle radio button groups
+                                if (elements instanceof RadioNodeList || elements.type === 'radio') {
+                                    const radioArray = elements.length ? Array.from(elements) : [elements];
+                                    radioArray.forEach(radio => {
+                                        if (radio.value === data[key]) radio.checked = true;
+                                    });
+                                } else {
+                                    // Handle standard text/textarea/select inputs
+                                    elements.value = data[key];
+                                }
+                            }
+                        }
+                    }
+                    alert("Form data loaded successfully.");
+                } catch (err) {
+                    alert("Error parsing JSON file. Please ensure it's a valid N-1 report file.");
+                }
+            };
+            reader.readAsText(file);
+        }
     </script>
 </head>
 <body>
@@ -189,63 +255,47 @@
             <p class="sub-header">UCARES WinLink Form</p>
         </div>
 
-        <form onsubmit="return confirm('To complete your form submission, click OK and close the open browser window. You will return to the new message window so you can post your message to the outbox');" id="thisN1Form" enctype="multipart/form-data" action="http://{FormServer}:{FormPort}" method="POST">
+        <form id="thisN1Form" onsubmit="return confirm('To complete your form submission, click OK and close the open browser window. You will return to the new message window so you can post your message to the outbox');" enctype="multipart/form-data" action="http://{FormServer}:{FormPort}" method="POST">
             <table class="n1-table">
                 <input name="Title" type="hidden" id="Title" value="UCARES N-1 Form Local Conditions Report" />
                 <tr>
                     <td colspan="2">
                         <label for="MsgTo">Send message to:</label>
-                        <input placeholder="Separate Emails with semicolon" maxlength="75" size="77" name="MsgTo" id="MsgTo" onchange="this.value=this.value.toUpperCase();" /><br /><br />
-                        <label for="MsgCc">Add CC:</label>
-                        <input placeholder="Add CC addresses (optional)" maxlength="55" size="55" name="MsgCc" id="MsgCc" onchange="this.value=this.value.toUpperCase();" />
+                        <input placeholder="Separate Emails with semicolon" name="MsgTo" id="MsgTo" onchange="this.value=this.value.toUpperCase();" />
                     </td>
                 </tr>
 
                 <tr>
                     <td>
                         <label for="DateTime">Box 1: Date and Local Time</label>
-                        <input placeholder="Click to add current Date/Time" id="ActivityDateTime1" name="DateTime" required="required" maxlength="19" size="39" onclick="TimeNow('ActivityDateTime1', 'Activities1')">
-                        <p class="prompt">Format: YYYY-MM-DD HH:MM</p>
+                        <input id="ActivityDateTime1" name="DateTime" required="required" onclick="TimeNow('ActivityDateTime1', 'Activities1')">
                     </td>
                     <td>
                         <label for="county">Box 2: County</label>
-                        <input type="text" id="county" name="county" placeholder="Enter County Name" required="required">
+                        <input type="text" id="county" name="county" required="required">
                     </td>
                 </tr>
 
                 <tr>
                     <td>
                         <label for="location">Box 3: Location</label>
-                        <input type="text" id="location" name="location" placeholder="e.g., What3Words, Lat. Long, Nearest Town" required="required">
+                        <input type="text" id="location" name="location" required="required">
                         <p><input type="button" value="Find on What3words" onclick="openWhat3words()" /></p>
                     </td>
-                    <td>
-                        <p class="prompt">Listen to net control instructions, or pick 1:
-                            What 3 Words,
-                            Latitude / Longitude,
-                            Nearest Town<br>Click the button it's easy-peasy
-                        </p>
-                    </td>
+                    <td><p class="prompt">What 3 Words, Lat/Long, or Nearest Town.</p></td>
                 </tr>
 
                 <tr>
                     <td>
                         <label for="weather">Box 4: Brief Weather Description</label>
-                        <input type="text" id="weather" name="weather" placeholder="e.g., partly cloudy, light southwest winds">
+                        <input type="text" id="weather" name="weather">
                     </td>
-                    <td>
-                        <p class="prompt">Examples:
-                            Partly cloudy, light southwest winds, 
-                            Sunny and mild with calm winds.
-                            Overcast with drizzle, breezy conditions.
-                            Clear skies, winds were calm overnight.
-                        </p>
-                    </td>
+                    <td><p class="prompt">e.g., Partly cloudy, light southwest winds.</p></td>
                 </tr>
 
                 <tr>
                     <td class="radio-group">
-                        <label>Box 5: Power (Electricity) Status</label>
+                        <label>Box 5: Power Status</label>
                         <fieldset>
                             <label><input type="radio" name="power_status" value="A. Normal" required="required"> A: Normal</label>
                             <label><input type="radio" name="power_status" value="B. Outages"> B: Outages</label>
@@ -274,29 +324,28 @@
                             <label><input type="radio" name="road_conditions" value="D. Unknown"> D: Unknown</label>
                         </fieldset>
                     </td>
-                    <td>
-                    </td>
+                    <td></td>
                 </tr>
 
                 <tr>
                     <td colspan="2">
                         <label for="incidents">Box 8: Notable Incidents or Hazards:</label>
-                        <textarea id="incidents" name="incidents_hazards" placeholder="Report any significant issues (e.g., fire, flood, major accident)."></textarea>
+                        <textarea id="incidents" name="incidents_hazards"></textarea>
                     </td>
                 </tr>
 
                 <tr>
                     <td colspan="2">
                         <label for="comments">Box 9: Additional Comments</label>
-                        <textarea id="comments" name="additional_comments" placeholder="Include any other relevant information."></textarea>
+                        <textarea id="comments" name="additional_comments"></textarea>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="radio-group">
-                        <label>Box 10: UCARES Certification Level</label>
+                        <label>Box 10: UCARES Level</label>
                         <fieldset>
-                            <label><input type="radio" name="ucares_level" value="0" required="required"> 0 (None)</label>
+                            <label><input type="radio" name="ucares_level" value="0" required="required"> 0</label>
                             <label><input type="radio" name="ucares_level" value="1"> 1</label>
                             <label><input type="radio" name="ucares_level" value="2"> 2</label>
                             <label><input type="radio" name="ucares_level" value="3"> 3</label>
@@ -307,7 +356,7 @@
                         <label for="yourname">Box 11: Name</label>
                         <input type="text" id="yourname" name="yourname" required="required">
                         <label for="MsgSender" style="margin-top: 15px;">Box 12: Callsign</label>
-                        <input type="text" id="MsgSender" name="MsgSender" placeholder="e.g., KD7URO" onchange="this.value=this.value.toUpperCase();" required="required">
+                        <input type="text" id="MsgSender" name="MsgSender" onchange="this.value=this.value.toUpperCase();" required="required">
                     </td>
                 </tr>
 
@@ -316,9 +365,23 @@
                         <button type="submit">Submit N-1 Report</button>
                     </td>
                 </tr>
-                <input name="Templateversion" type="hidden" id="Templateversion" value="UC N-1 v0.3" />
+                
+                <tr>
+                    <td colspan="2" class="utility-cell">
+                        <button type="button" class="save-btn" onclick="saveFormAsJSON()">Save Data to JSON</button>
+                        
+                        <button type="button" class="load-btn" onclick="document.getElementById('fileLoader').click()">Load Data from File</button>
+                        
+                        <input type="file" id="fileLoader" style="display:none" accept=".json,.txt" onchange="loadFormFromJSON(event)">
+                        
+                        <button type="button" class="clear-btn" onclick="clearForm()">Clear Form</button>
+                    </td>
+                </tr>
+                
+                <input name="Templateversion" type="hidden" id="Templateversion" value="UC N-1 v0.4" />
             </table>
-        </form><p style="font-style: italic; font-size: small;">WinLink UC N-1 Form v0.3</p>
+        </form>
+        <p style="font-style: italic; font-size: small;">WinLink UC N-1 Form v0.4</p>
     </div>
 
 </body>
