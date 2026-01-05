@@ -209,7 +209,14 @@
             outline: none;
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.5); /* focus:ring-4 focus:ring-red-500/50 equivalent */
         }
+        button.clear-btn { color: #ffffff; background-color: #4e26dc; }
+        button.clear-btn:hover { background-color: #767676; }
 
+        button.save-btn { color: #ffffff; background-color: #4e26dc; }
+        button.save-btn:hover { background-color: #767676; }
+
+        button.load-btn { color: #ffffff; background-color: #969595; }
+        button.load-btn:hover { background-color: #767676; }
     </style>
 </head>
 <body>
@@ -324,11 +331,16 @@
             <!-- Submit Button (Winlink client will serialize form data upon submission) --><div class="submit-container">
                 <button type="submit" class="submit-button">
                     Submit Report
-                </button>
+                </button></div>
+            <div>
+                <button type="button" class="save-btn" onclick="saveFormAsJSON()">Save Data</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="load-btn" onclick="document.getElementById('fileLoader').click()">Load Data</button>&nbsp;&nbsp;&nbsp;
+                <input type="file" id="fileLoader" style="display:none" accept=".json,.txt" onchange="loadFormFromJSON(event)">
+                <button type="button" class="clear-btn" onclick="clearForm()">Clear Form</button>
             </div>
-            <input name="Templateversion" type="hidden" id="Templateversion" value="UC N-2 v0.1" />
+            <input name="Templateversion" type="hidden" id="Templateversion" value="UC N-2 v0.2" />
         </form>
-        <p style="font-style: italic; font-size: small;">WinLink UC N-2 Form v0.1</p>
+        <p style="font-style: italic; font-size: small;">WinLink UC N-2 Form v0.2</p>
     </div>
 
     <script>
@@ -403,6 +415,67 @@
             // Provide a clear instruction to the user since automatic pasting isn't possible
             alert("A new window/tab has opened with What3words.com. Please find your location, copy the 3-word address (e.g., ///word.word.word), and paste it back into the 'What3words location' field on this form.");
         }
+
+        function clearForm() {
+            if (confirm("Are you sure you want to clear all data from this form?")) {
+                document.getElementById('thisN2Form').reset();
+            }
+        }
+
+        function saveFormAsJSON() {
+            const form = document.getElementById('thisN2Form');
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value; });
+
+            const jsonString = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonString], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 16);
+            link.href = url;
+            link.download = `N2_Report_${timestamp}.txt`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // NEW: Function to load JSON data back into the form
+        function loadFormFromJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    const form = document.getElementById('thisN2Form');
+                    
+                    for (const key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const elements = form.elements[key];
+                            if (elements) {
+                                // Handle radio button groups
+                                if (elements instanceof RadioNodeList || elements.type === 'radio') {
+                                    const radioArray = elements.length ? Array.from(elements) : [elements];
+                                    radioArray.forEach(radio => {
+                                        if (radio.value === data[key]) radio.checked = true;
+                                    });
+                                } else {
+                                    // Handle standard text/textarea/select inputs
+                                    elements.value = data[key];
+                                }
+                            }
+                        }
+                    }
+                    alert("Form data loaded successfully.");
+                } catch (err) {
+                    alert("Error parsing JSON file. Please ensure it's a valid N-2 report file.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
     </script>
 
 </body>
