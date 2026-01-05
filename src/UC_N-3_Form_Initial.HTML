@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-2 Found/Missing Person Report</title>
+    
+    <style>
+        /* Base styles derived from Inter font and Tailwind defaults */
+        /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap'); */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            padding: 1rem; /* p-4 equivalent */
+        }
+        @media (min-width: 640px) {
+            body {
+                padding: 2rem; /* sm:p-8 equivalent */
+            }
+        }
+
+        /* Container styles */
+        .container {
+            max-width: 48rem; /* max-w-4xl equivalent */
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl equivalent */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-2xl equivalent */
+            overflow: hidden;
+        }
+
+        /* Header/Title Bar styles */
+        .header {
+            background-color: #93c5fd; /* bg-blue-300 equivalent */
+            padding: 1rem;
+            text-align: center;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+        .header h1 {
+            font-size: 1.875rem; /* text-3xl equivalent */
+            font-weight: 800; /* font-extrabold equivalent */
+            color: #1e3a8a; /* text-blue-900 equivalent */
+            letter-spacing: 0.05em; /* tracking-wider equivalent */
+        }
+        .header p {
+            font-size: 0.875rem; /* text-sm equivalent */
+            color: #1d4ed8; /* text-blue-700 equivalent */
+            margin-top: 0.25rem;
+        }
+
+        /* Important Note styles */
+        .note-bar {
+            background-color: #FFEB3B; /* Changed to Canary Yellow */
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom-left-radius: 0.5rem; /* rounded-b-lg equivalent */
+            border-bottom-right-radius: 0.5rem; /* rounded-b-lg equivalent */
+        }
+        @media (min-width: 640px) {
+            .note-bar {
+                border-radius: 0; /* sm:rounded-none equivalent */
+            }
+        }
+        .note-bar p {
+            font-weight: 700; /* font-bold equivalent */
+            text-transform: uppercase;
+            color: #854d0e; /* text-yellow-900 equivalent */
+            font-size: 0.875rem; /* text-sm equivalent */
+        }
+        @media (min-width: 640px) {
+            .note-bar p {
+                font-size: 1rem; /* sm:text-base equivalent */
+            }
+        }
+
+        /* Form section styles */
+        .form-content {
+            padding: 1.5rem; /* p-6 equivalent */
+        }
+        @media (min-width: 640px) {
+            .form-content {
+                padding: 2rem; /* sm:p-8 equivalent */
+            }
+        }
+        .form-content > * + * {
+            margin-top: 1.5rem; /* space-y-6 equivalent */
+        }
+
+        /* Routing section (TO/CC) styles */
+        .routing-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem; /* gap-6 equivalent */
+            padding-bottom: 1.5rem;
+            border-bottom: 4px solid #bfdbfe; /* border-b-4 border-blue-100 equivalent */
+        }
+        @media (min-width: 768px) {
+            .routing-section {
+                grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 equivalent */
+            }
+        }
+        .routing-field {
+            display: flex;
+            flex-direction: column;
+        }
+        .routing-field label {
+            font-weight: 700;
+            color: #1d4ed8; /* text-blue-700 equivalent */
+            margin-bottom: 0.25rem;
+        }
+        .routing-field input {
+            border: 2px solid #60a5fa; /* border-2 border-blue-400 equivalent */
+            padding: 0.5rem;
+            border-radius: 0.5rem; /* rounded-lg equivalent */
+            transition: all 0.15s ease-in-out; /* transition duration-150 equivalent */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm equivalent */
+        }
+        .routing-field input:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            border-color: #3b82f6; /* focus:border-blue-500 equivalent */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* focus:ring-blue-500 equivalent */
+        }
+
+        /* Table styles */
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #9ca3af; /* border border-gray-400 equivalent */
+        }
+        .form-table td {
+            vertical-align: top;
+            padding: 0.75rem; /* p-3 equivalent */
+            border: 1px solid #d1d5db; /* border border-gray-300 equivalent */
+            width: 50%;
+        }
+        /* Style for the instruction cell (Box 3 right) */
+        .instruction-cell {
+            background-color: #f9fafb; /* bg-gray-50 equivalent */
+            font-size: 0.875rem; /* text-sm equivalent */
+            color: #4b5563; /* text-gray-600 equivalent */
+            font-style: italic;
+            /* Removed display: flex and align-items: center to ensure text spans the full width of the column */
+            text-align: left; 
+        }
+        /* Ensure the paragraph inside takes the full width */
+        .instruction-cell p {
+            width: 100%; 
+            margin: 0;
+        }
+        .full-width-cell {
+            width: 100%;
+        }
+
+        /* Input/Textarea styles within the table (Boxes 1-12) */
+        .form-table label {
+            font-weight: 600; /* font-semibold equivalent */
+            color: #374151; /* text-gray-700 equivalent */
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        .form-table input[type="text"],
+        .form-table input[type="number"],
+        .form-table input[type="date"],
+        .form-table input[type="time"],
+        .form-table textarea {
+            /* DECREASING LENGTH (WIDTH) BY 10 PIXELS */
+            width: calc(100% - 10px); 
+            border: 1px solid #d1d5db; /* border border-gray-300 equivalent */
+            padding: 0.5rem;
+            border-radius: 0.5rem; /* rounded-lg equivalent */
+            transition: all 0.15s ease-in-out;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            margin-top: 4px;
+        }
+        .form-table input:focus,
+        .form-table textarea:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            border-color: #3b82f6; /* focus:border-blue-500 equivalent */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* focus:ring-blue-500 equivalent */
+        }
+        .radio-group fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .radio-group fieldset label {
+            font-weight: normal;
+            font-size: 0.80rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        /* Submit button styles */
+        .submit-container {
+            padding-top: 1rem; /* pt-4 equivalent */
+            display: flex;
+            justify-content: flex-end; /* justify-end equivalent */
+        }
+        .submit-button {
+            background-color: #4e26dc; /* bg-blue-600 equivalent */
+            color: #ffffff;
+            font-weight: 700;
+            padding-top: 0.75rem; /* py-3 equivalent */
+            padding-bottom: 0.75rem;
+            padding-left: 1.5rem; /* px-6 equivalent */
+            padding-right: 1.5rem;
+            border-radius: 9999px; /* rounded-full equivalent */
+            transition: all 0.2s ease-in-out; /* transition duration-200 equivalent */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg equivalent */
+        }
+        .submit-button:hover {
+            background-color: #999595; /* hover:bg-grey 700 equivalent */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* hover:shadow-xl equivalent */
+        }
+        .submit-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.5); /* focus:ring-4 focus:ring-red-500/50 equivalent */
+        }
+        button.clear-btn { color: #ffffff; background-color: #4e26dc; }
+        button.clear-btn:hover { background-color: #767676; }
+
+        button.save-btn { color: #ffffff; background-color: #4e26dc; }
+        button.save-btn:hover { background-color: #767676; }
+
+        button.load-btn { color: #ffffff; background-color: #969595; }
+        button.load-btn:hover { background-color: #767676; }
+    </style>
+    <script>
+        /**
+         * Utility function to format a single number with leading zero if needed.
+         * @param {number} num - The number to format.
+         * @returns {string} The formatted string.
+         */
+        function pad(num) {
+            return String(num).padStart(2, '0');
+        }
+
+        /**
+         * Sets the value of the Date input (Box 1) to the current local date (YYYY-MM-DD).
+         * This is triggered when the user focuses on the date input field.
+         */
+        function setCurrentDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            // getMonth() is 0-indexed, so add 1
+            const month = pad(now.getMonth() + 1);
+            const day = pad(now.getDate());
+            const dateString = `${year}-${month}-${day}`;
+            
+            // Only set the value if it's currently empty to avoid overwriting user input
+            const dateInput = document.getElementById('date');
+            if (!dateInput.value) {
+                dateInput.value = dateString;
+            }
+        }
+
+        /**
+         * Sets the value of the Time input (Box 2) to the current local time (HH:MM).
+         * This is triggered when the user focuses on the time input field.
+         */
+        function setCurrentTime() {
+            const now = new Date();
+            const hours = pad(now.getHours());
+            const minutes = pad(now.getMinutes());
+            const timeString = `${hours}:${minutes}`;
+            
+            // Only set the value if it's currently empty to avoid overwriting user input
+            const timeInput = document.getElementById('time');
+            if (!timeInput.value) {
+                timeInput.value = timeString;
+            }
+        }
+        function openWhat3words() {
+            // You can use a default W3W address, or try to get the current value from the input field
+            var w3wInput = document.getElementById('location');
+            var w3wValue = w3wInput.value.trim();
+
+            // If the input field has a valid-looking w3w address, use it. Otherwise, use a default.
+            // This regex checks for three word.word.word format, with optional /// prefix.
+            var w3wRegex = /^(?:\/\/\/)?([a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+)$/;
+            var urlToOpen = 'https://what3words.com/';
+
+            if (w3wRegex.test(w3wValue)) {
+                // Remove any leading "///" for the URL path
+                var cleanW3w = w3wValue.replace(/^\/\/\//, '');
+                urlToOpen += cleanW3w;
+            } else {
+                // Default to a common or example address if the input is empty or invalid
+                urlToOpen += 'jaws.square.bikes'; // A neutral, easy-to-remember example
+                // Alternatively, you could just open 'https://what3words.com/' for the user to search directly.
+            }
+
+            // Open the URL in a new browser window/tab
+            // 'width=900,height=600' are suggestions; WinLink's embedded browser might ignore these for popups.
+            window.open(urlToOpen, '_blank', 'width=900,height=600,resizable=yes,scrollbars=yes');
+
+            // Provide a clear instruction to the user since automatic pasting isn't possible
+            alert("A new window/tab has opened with What3words.com. Please find your location, copy the 3-word address (e.g., ///word.word.word), and paste it back into the 'What3words location' field on this form.");
+        }
+
+        function clearForm() {
+            if (confirm("Are you sure you want to clear all data from this form?")) {
+                document.getElementById('thisN3Form').reset();
+            }
+        }
+
+        function saveFormAsJSON() {
+            const form = document.getElementById('thisN3Form');
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value; });
+
+            const jsonString = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonString], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 16);
+            link.href = url;
+            link.download = `N2_Report_${timestamp}.txt`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // NEW: Function to load JSON data back into the form
+        function loadFormFromJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    const form = document.getElementById('thisN3Form');
+                    
+                    for (const key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const elements = form.elements[key];
+                            if (elements) {
+                                // Handle radio button groups
+                                if (elements instanceof RadioNodeList || elements.type === 'radio') {
+                                    const radioArray = elements.length ? Array.from(elements) : [elements];
+                                    radioArray.forEach(radio => {
+                                        if (radio.value === data[key]) radio.checked = true;
+                                    });
+                                } else {
+                                    // Handle standard text/textarea/select inputs
+                                    elements.value = data[key];
+                                }
+                            }
+                        }
+                    }
+                    alert("Form data loaded successfully.");
+                } catch (err) {
+                    alert("Error parsing JSON file. Please ensure it's a valid N-3 report file.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Header/Title Bar --><header class="header">
+            <h1>N-3 Form</h1>
+            <p>UCARES Utility Status Report</p>
+        </header>
+
+        <!-- Important Note --><div class="note-bar">
+            <p>DANGER: Do not approach downed electrical lines or other damaged utilities!!!</p>
+        </div>
+
+        <!-- Main Form Content --><form class="form-content" onsubmit="return confirm('To complete your form submission, click OK and close the open browser window. You will return to the new messutilstatus window so you can post your messutilstatus to the outbox');" id="thisN3Form" enctype="multipart/form-data" action="http://{FormServer}:{FormPort}" method="POST">
+
+            <!-- Winlink Email Headers (Routing) --><div class="routing-section">
+                <input name="Title" type="hidden" id="Title" value="UCARES N-3 Utility Status Report">
+                <!-- TO: Email Address --><div class="routing-field">
+                    <label for="MsgTo">TO:</label>
+                    <input type="text" id="MsgTo" name="MsgTo" placeholder="Email or call sign" onchange="this.value=this.value.toUpperCase();" required="required">
+                </div>
+                
+                <!-- CC: Email Address --><div class="routing-field">
+                    <label for="MsgCc">CC:</label>
+                    <input type="text" id="MsgCc" name="MsgCc" placeholder="Optional Carbon Copy Email" onchange="this.value=this.value.toUpperCase();">
+                </div>
+            </div>
+            
+            <!-- Table for Boxes 1 through 12 --><table class="form-table">
+                <tbody>
+
+                    <!-- Row 1: Box 1 (Date) & Box 2 (Time) --><tr>
+                        <td>
+                            <label for="Dateval">Box 1: Date</label>
+                            <!-- onfocus triggers the JS function to set the current date -->
+                             <input type="date" id="Dateval" name="Dateval" onfocus="setCurrentDate()" required="required">
+                        </td>
+                        <td>
+                            <label for="Timeval">Box 2: Time</label>
+                            <!-- onfocus triggers the JS function to set the current time -->
+                             <input type="time" id="Timeval" name="Timeval" onfocus="setCurrentTime()" required="required">
+                        </td>
+                    </tr>
+
+                    <!-- Row 2: Box 3 (Location) & Instructions --><tr>
+                        <td>
+                            <label for="location">Box 3: Location</label>
+                            <input type="text" id="location" name="location" placeholder="e.g., ///w3w, 40.76/-111.89">
+                            <p><input type="button" value="Find on What3words" onclick="openWhat3words()" /></p>
+                        </td>
+                        <td class="instruction-cell">
+                            <p>Listen to net control instructions or pick one of <ul><li>'///What3Words'</li><li>'Lat./Long'</li><li>street name or nearest town.</li></ul></p>
+                            
+                        </td>
+                    </tr>
+                    
+                    <!-- Row 3: Box 4 (Utility Type) & Box 5 (Utility Status) --><tr>
+                        <td class="radio-group">
+                            <label>Box 4: Utility Type</label>
+                            <fieldset>
+                            <label><input type="radio" name="utilitytype" value="C. Culinary Water" required="required"> C. Culinary Water</label>
+                            <label><input type="radio" name="utilitytype" value="E. Electrical"> E. Electrical</label>
+                            <label><input type="radio" name="utilitytype" value="F. Fiber Optic"> F. Fiber Optic</label>
+                            <label><input type="radio" name="utilitytype" value="G. Natural Gas"> G. Natural Gas</label>
+                            <label><input type="radio" name="utilitytype" value="R. River/Waterway"> R. River/Waterway</label>
+                            <label><input type="radio" name="utilitytype" value="S. Sewer"> S. Sewer</label>
+                        </fieldset>
+                        </td>
+                        <td class="radio-group">
+                            <label>Box 5: Status</label>
+                            <fieldset>
+                            <label><input type="radio" name="utilstatus" value="A. Working" required="required"> A. Working</label>
+                            <label><input type="radio" name="utilstatus" value="B. Intermittent"> B. Intermittent</label>
+                            <label><input type="radio" name="utilstatus" value="C. Outage"> C. Outage</label>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <!-- Box 6: Safety / Impact Radio box-->
+                     <tr>
+                        <td colspan="2" class="radio-group">
+                            <label>Box 6: Safety / Impact</label>
+                            <fieldset>
+                                <label><input type="radio" name="safetyimpact" value="A. Safe (No Hazard)" required="required"> A. Safe (No Hazard)</label>
+                                <label><input type="radio" name="safetyimpact" value="B. Caution (Potential Hazard)"> B. Caution (Potential Hazard)</label>
+                                <label><input type="radio" name="safetyimpact" value="C. Dangerous (Active Hazard)"> C. Dangerous (Active Hazard)</label>
+                                <label><input type="radio" name="safetyimpact" value="D. Causing Property Damage"> D. Causing Property Damage</label>
+                                <label><input type="radio" name="safetyimpact" value="E. Casualties / Fatal"> E. Casualties / Fatal</label>
+                            </fieldset>
+
+                        </td>
+                     </tr>
+                     <!-- Box 7: Additional comments box -->
+                    <tr>
+                        <td colspan="2">
+                            <label for="comments">Box 7: Additional Comments</label>
+                            <textarea id="additional_comments" name="additional_comments" placeholder="Add any additional comments"></textarea>
+                        </td>
+                    </tr>
+        
+                    <!-- Box 8 (Operator Name) & Box 9 (Call Sign) -->
+                     <tr>
+                        <td>
+                            <label for="operator_name">Box 8: Operator Name</label>
+                            <input type="text" id="operator_name" name="operator_name" placeholder="Your Name">
+                        </td>
+                        <td>
+                            <label for="MsgSender">Box 9: Call Sign</label>
+                            <input type="text" id="MsgSender" name="MsgSender" placeholder="Your Call Sign" onchange="this.value=this.value.toUpperCase();" required="required">
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+            <!-- Submit Button (Winlink client will serialize form data upon submission) --><div class="submit-container">
+                <button type="submit" class="submit-button">
+                    Submit Report
+                </button></div>
+            <div>
+                <button type="button" class="save-btn" onclick="saveFormAsJSON()">Save Data</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="load-btn" onclick="document.getElementById('fileLoader').click()">Load Data</button>&nbsp;&nbsp;&nbsp;
+                <input type="file" id="fileLoader" style="display:none" accept=".json,.txt" onchange="loadFormFromJSON(event)">
+                <button type="button" class="clear-btn" onclick="clearForm()">Clear Form</button>
+            </div>
+            <input name="Templateversion" type="hidden" id="Templateversion" value="UC N-3 v0.1" />
+        </form>
+        <p style="font-style: italic; font-size: small;">WinLink UC N-3 Form v0.1</p>
+    </div>
+
+
+</body>
+</html>
