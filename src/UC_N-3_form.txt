@@ -1,0 +1,26 @@
+Form:UC_N-3_Form_Initial, UC_N-3_Form_Viewer.html
+
+To: <var MsgTo>
+Cc: <var MsgCc>
+
+Subject: UCARES N-3 Utility Status Report - <var MsgSender>
+
+SeqInc: 1
+
+Msg:
+-
+Winlink Counter: <SeqNum>
+
+<var Title>
+Box 1: <var Dateval>
+Box 2: <var Timeval>
+Box 3: <var location>
+Box 4: <var utilitytype>
+Box 5: <var utilstatus>
+Box 6: <var safetyimpact>
+Box 7: <var additional_comments>
+Box 8: <var operator_name>
+Box 8a: <var MsgSender>
+
+============
+<var Templateversion>
