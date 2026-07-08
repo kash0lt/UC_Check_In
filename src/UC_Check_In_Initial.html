@@ -275,19 +275,25 @@ document.getElementById('SubjectText').innerHTML = RightNow;
 store();
 }
 function TimeNow(Timefld, FocusFld) {
-var txt;
-var d = new Date(),
-thisyear = d.getFullYear();
-thismonth= d.getMonth();
-thismonth = thismonth+1;
-thisday = d.getDate();
-h = (d.getHours()<10?'0':'') + d.getHours()
-m = (d.getMinutes()<10?'0':'') + d.getMinutes()
-s = (d.getSeconds()<10?'0':'') + d.getSeconds();
-var myprompt = thisyear+ '-'+thismonth+'-'+thisday+' '+h + ':' + m;
-var RightNow = prompt("", myprompt);
-document.getElementById(Timefld).value = RightNow;
-} </script>
+  var d = new Date();
+  
+  // 1. Get the components and force them to 2 digits using padStart
+  var thisyear = d.getFullYear();
+  var thismonth = String(d.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  var thisday = String(d.getDate()).padStart(2, '0');
+  
+  var h = String(d.getHours()).padStart(2, '0');
+  var m = String(d.getMinutes()).padStart(2, '0');
+  // s is fetched here but not used in your prompt string; padded just in case
+  var s = String(d.getSeconds()).padStart(2, '0'); 
+
+  // 2. This is where you adjust and construct the return date-time string
+  var myprompt = thisyear + '-' + thismonth + '-' + thisday + ' ' + h + ':' + m;
+  
+  var RightNow = prompt("", myprompt);
+  document.getElementById(Timefld).value = RightNow;
+}
+</script>
 <script>
 function AutoGrowTextArea(textField)
 {
@@ -968,8 +974,8 @@ function openWhat3words() {
 &nbsp; &nbsp; &nbsp;
 &nbsp;</span></span>
 &nbsp; &nbsp; &nbsp;&nbsp;<span style="font-family:  Arial, Helvetica, sans-serif;;">&nbsp;
-&nbsp; <span class="style25">Ver 0.5</span>&nbsp;&nbsp;&nbsp;<span style="font-size: 12px;">
-<input name="Templateversion" type="hidden" id="Templateversion" value="Winlink Check in 0.5" />
+&nbsp; <span class="style25">Ver 0.6</span>&nbsp;&nbsp;&nbsp;<span style="font-size: 12px;">
+<input name="Templateversion" type="hidden" id="Templateversion" value="Winlink Check in 0.6" />
 </span></span></td>
 </tr>
 </tbody>
